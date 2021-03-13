@@ -1,0 +1,12 @@
+<p style="font-size:25px;">Amount to charge: {{chargeAmount}}Tk</p>
+<ngx-braintree [clientTokenURL]="clientTokenURL"
+               [createPurchaseURL]="createPurchaseURL"
+               [chargeAmount]="chargeAmount"
+               (paymentStatus)="onPaymentStatus($event)"
+               [showCardholderName]="true"
+               (dropinLoaded)="onDropinLoaded($event)"
+               [buttonText]="'Place an Order'"
+               [currency]="'BDT'"
+               [allowChoose]="true">
+</ngx-braintree>
+

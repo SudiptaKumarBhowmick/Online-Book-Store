@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-store">
+  <a class="navbar-brand navbar-logo" href="#">Online Book Store</a>
+
+  <div class="navbar-logout">
+    <button class="btn btn-danger my-2 my-sm-0 navbar-logout-btn" (click)="onClickLogOut()">{{LogInBtn}}</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row centered-form mt-4">
+    <div class="col-md-6 offset-md-3">
+      <div class="panel panel-default" *ngIf="date.value">
+
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h3>User Profile</h3>
+            <p>Update user profile information.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <form [formGroup]="userProfileForm" #userProfileDetailsForm="ngForm" autocomplete="off" class="form-horizontal" (ngSubmit)="Update(userProfileDetailsForm)">
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>FirstName: </label>
+                  <input type="text" formControlName="FirstName" class="form-control input-sm" placeholder="First Name" autocomplete="off">
+                  <label class="text-danger" *ngIf="userProfileForm.get('FirstName').touched && userProfileForm.get('FirstName').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>LastName: </label>
+                  <input type="text" formControlName="LastName" class="form-control input-sm" placeholder="Last Name" autocomplete="off">
+                  <label class="text-danger" *ngIf="userProfileForm.get('LastName').touched && userProfileForm.get('LastName').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group required">
+              <label style="width: 100%;">Date of Birth: </label>
+              <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="dateOfBirth" formControlName="DateOfBirth" class="form-control" [value]="date.value">
+                <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                <mat-datepicker #dateOfBirth></mat-datepicker>
+              </mat-form-field>
+              <label style="margin-left: 10px;" class="text-danger" *ngIf="userProfileForm.get('DateOfBirth').touched && userProfileForm.get('DateOfBirth').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="form-group required">
+              <label>Address: </label>
+              <input type="text" formControlName="Address" class="form-control input-sm" placeholder="Address" autocomplete="off">
+              <label class="text-danger" *ngIf="userProfileForm.get('Address').touched && userProfileForm.get('Address').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>City: </label>
+                  <input type="text" formControlName="City" class="form-control input-sm" placeholder="City" autocomplete="off">
+                  <label class="text-danger" *ngIf="userProfileForm.get('City').touched && userProfileForm.get('City').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>Phone Number: </label>
+                  <input type="text" formControlName="PhoneNumber" class="form-control input-sm" placeholder="Phone Number" maxlength="11" autocomplete="off">
+                  <label class="text-danger" *ngIf="userProfileForm.get('PhoneNumber').touched && userProfileForm.get('PhoneNumber').errors?.required">This field is mandatory.</label>
+                  <label class="text-danger" *ngIf="userProfileForm.get('PhoneNumber').touched && userProfileForm.get('PhoneNumber').errors?.minlength">Enter 11 digit phone number.</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group" style="margin-left:4px;">
+                <button type="submit" class="btn btn-info btn-block"><i class="fa fa-check-square-o"></i> Update</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

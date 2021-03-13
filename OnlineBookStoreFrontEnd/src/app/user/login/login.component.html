@@ -1,0 +1,97 @@
+<div class="row mt-4">
+  <div class="col-md-6 offset-md-3 LogIn_form_parent">
+
+    <!--<form #form="ngForm" class="mb-4 LogIn_form" autocomplete="off" (submit)="onSubmit(form)">
+      <div class="form-group LogIn_form_header">
+        <h3>Sign-In</h3>
+      </div>
+      <div class="form-group required">
+        <label>UserName:</label>
+        <input class="form-control" #UserName="ngModel" name="UserName" [(ngModel)]="formModel.UserName" required />
+      </div>
+      <div class="form-group required">
+        <label>Password:</label>
+        <input type="password" class="form-control" #Password="ngModel" name="Password" [(ngModel)]="formModel.Password" required />
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+          <button type="submit" class="btn btn-lg btn-block">Login</button>
+        </div>
+      </div>
+    </form>-->
+
+    <form [formGroup]="formModelLogIn" #form="ngForm" autocomplete="off" class="LogIn_form" (ngSubmit)="login(form)">
+      <div class="form-group LogIn_form_header">
+        <h3>Sign-In</h3>
+      </div>
+      <!--<div class="form-group required">
+        <label>UserName:</label>
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.UserName.errors }" class="class_input">
+          <input type="text" formControlName="UserName" class="form-control">
+        </p>
+        <div *ngIf="isSubmitted && formControls.UserName.errors" class="text-danger">
+          <div *ngIf="formControls.UserName.errors.required" class="class_error">UserName is required.</div>
+        </div>
+      </div>-->
+
+      <div class="form-group required">
+        <label>Email:</label>
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.Email.errors }" class="class_input">
+          <input type="text" formControlName="Email" class="form-control">
+        </p>
+        <div *ngIf="isSubmitted && formControls.Email.errors" class="text-danger">
+          <div *ngIf="formControls.Email.errors.required" class="class_error">Email is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group required">
+        <label>Password:</label>
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.Password.errors }" class="class_input">
+          <input type="password" placeholder="minimum 6 character" formControlName="Password" class="form-control" />
+        </p>
+        <div *ngIf="isSubmitted && formControls.Password.errors" class="text-danger">
+          <div *ngIf="formControls.Password.errors.required" class="class_error">Password is required.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+          <button type="submit" class="btn btn-lg btn-block btn-login">Login</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <span>Create an account? <a href="" class="redirect_to_signin" [routerLink]="['/user/registration']">Sign Up</a></span>
+        </div>
+      </div>
+      <!--<div class="form-row">
+        <div class="form-group">
+          <button (click)="logInWithGoogle('Google')">Google LogIn</button>
+        </div>
+      </div>-->
+      <!--<div class="form-row">
+        <div class="form-group">
+          <button (click)="logInWithFacebook('Facebook')">Facebook LogIn</button>
+        </div>
+      </div>-->
+    </form>
+
+
+  </div>
+  <div class="col-md-6 offset-md-3">
+    <div class="google-btn">
+      <div class="google-icon-wrapper">
+        <img class="google-icon" src="/assets/image/google-g-logo.jpg" />
+      </div>
+      <p class="btn-text" (click)="logInWithGoogle('Google')"><b>Sign in with Google</b></p>
+    </div>
+  </div>
+  <div class="col-md-6 offset-md-3">
+    <div class="facebook-btn">
+      <div class="facebook-icon-wrapper">
+        <img class="facebook-icon" src="/assets/image/icon_facebook.png" />
+      </div>
+      <p class="btn-text" (click)="logInWithFacebook('Facebook')"><b>Sign in with Facebook</b></p>
+    </div>
+  </div>
+</div>

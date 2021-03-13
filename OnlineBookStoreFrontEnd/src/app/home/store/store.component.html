@@ -1,0 +1,298 @@
+<!--https://bootsnipp.com/tags/shop-->
+<!--https://bootsnipp.com/snippets/O5yMd-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-store mnb navbar-default navbar-fixed-top">
+
+  <!-- Sidebar -->
+  <div class="w3-sidebar w3-bar-block w3-border-right" [ngClass]="statusClass" id="mySidebar">
+    <button (click)="leftbar_close()" class="w3-bar-item w3-large">Close &times;</button>
+    <a href="#" class="w3-bar-item w3-button">Link 1</a>
+    <a href="#" class="w3-bar-item w3-button">Link 2</a>
+    <a href="#" class="w3-bar-item w3-button">Link 3</a>
+  </div>
+
+  <!-- Page Content -->
+  <div class="w3-teal navbar-scroll-btn">
+    <button class="w3-button w3-teal w3-xlarge" (click)="leftbar_open()">☰</button>
+  </div>
+
+  <a class="navbar-brand navbar-logo" href="#">Online Book Store</a>
+
+  <!--<form class="form-inline my-2 my-lg-0 navbar-search">
+    <div class="md-form">
+      <input class="form-control mr-sm-2 navbar-search-input" type="search" placeholder="Search" aria-label="Search">
+    </div>
+  </form>-->
+  <!--<div class="form-group navbar-search">
+    <div class="input-group">
+      <input class="form-control" *ngIf="flag" type="text" [(ngModel)]="ClientName" (keyup)="searchClient(ClientName)" />
+      <input class="form-control" [(ngModel)]="ClientName" disabled *ngIf="!flag" type="text" />
+    </div>
+  </div>
+  <div class="search-result" *ngIf="flag">
+    <ul>
+      <li *ngFor="let client of clients | async">
+        <a (click)="onselectClient(client)">{{client.ClientName}}</a>
+      </li>
+    </ul>
+  </div>-->
+  <!--<label class="col-sm-4 col-md-8 text-right control-label vertical-label" for="inputPassword3"> Select Client Name</label>
+  <div class="col-sm-8 col-md-4 text-right">
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" *ngIf="flag" type="text" [(ngModel)]="ClientName" (keyup)="searchClient(ClientName)" />
+        <input class="form-control" [(ngModel)]="ClientName" disabled *ngIf="!flag" type="text" />
+
+      </div>
+    </div>
+    <div class="search-result" *ngIf="flag">
+      <ul>
+        <li *ngFor="let client of clients | async">
+          <a (click)="onselectClient(client)">{{client.ClientName}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>-->
+
+  <div class="navbar-cart" [routerLink]="['/cartlist']">
+    <i class="fa fa-shopping-cart navbar-cart-icon" aria-hidden="true"></i>
+  </div>
+
+  <div class="navbar-user-profile" *ngIf="showProfileBtn">
+    <button class="btn btn-info my-2 my-sm-0 navbar-user-profile-btn" (click)="onClickUserProfileBtn()">{{UserProfileBtn}}</button>
+  </div>
+
+  <div class="navbar-logout">
+    <button class="btn btn-danger my-2 my-sm-0 navbar-logout-btn" (click)="onClickLogOutBtn()">{{LogInBtn}}</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="header_dashboard">
+    <h1>Online Book Store</h1>
+    <p>Book Collection</p>
+  </div>
+
+  <div class="add_to_cart_product" [routerLink]="['/cartlist']">
+    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+    <div class="add_to_cart_count">
+      <p>{{addToCartCount}}</p>
+    </div>
+  </div>
+
+  <section id="first_container_section">
+    <div class="row" style="padding-top: 2rem;">
+      <div class="section_header">
+        <h4>Bengali Novels</h4>
+        <span class="view_all_books" (click)="AllBookList('Bengali Novel')"><i class="fa fa-book"></i> View all books</span>
+      </div>
+      <div class="offset-md-1"></div>
+      <div class="col-md-2 col-sm-6" *ngFor="let ptone of _productTempService.product_template_list_one">
+        <div class="product-grid2">
+          <div class="product-image2">
+            <span>
+              <img class="pic-1" [src]="ptone.templateProductImage">
+              <img class="pic-2" [src]="ptone.templateProductImage">
+            </span>
+            <ul class="social">
+              <li (click)="AddToCart(ptone.templateProductCode)"><span data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></span></li>
+            </ul>
+            <span class="add-to-cart" (click)="ViewDetails(ptone.templateProductCode)">View Details</span>
+          </div>
+          <div class="product-content">
+            <!--<h3 class="title"><input type="text" [ngValue]="pt.ProductName" /></h3>-->
+            <input type="hidden" class="form-control" id="product_code" [value]="ptone.templateProductCode" />
+            <h4><span class="title"><b>{{ptone.templateProductName}}</b></span></h4>
+            <span class="price"><b>Tk.{{ptone.templateProductPrice}}</b></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="second_container_section">
+    <div class="row" style="padding-top: 2rem;">
+      <div class="section_header">
+        <h4>English Literature</h4>
+        <span class="view_all_books" (click)="AllBookList('English Literature')"><i class="fa fa-book"></i> View all books</span>
+      </div>
+      <div class="offset-md-1"></div>
+      <div class="col-md-2 col-sm-6" *ngFor="let pttwo of _productTempService.product_template_list_two">
+        <div class="product-grid2">
+          <div class="product-image2">
+            <span>
+              <img class="pic-1" [src]="pttwo.templateProductImage">
+              <img class="pic-2" [src]="pttwo.templateProductImage">
+            </span>
+            <ul class="social">
+              <li (click)="AddToCart(pttwo.templateProductCode)"><span data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></span></li>
+            </ul>
+            <span class="add-to-cart" (click)="ViewDetails(pttwo.templateProductCode)">View Details</span>
+          </div>
+          <div class="product-content">
+            <input type="hidden" class="form-control" id="product_code" [value]="pttwo.templateProductCode" />
+            <h4><span class="title"><b>{{pttwo.templateProductName}}</b></span></h4>
+            <span class="price"><b>Tk.{{pttwo.templateProductPrice}}</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="third_container_section">
+    <div class="row" style="padding-top: 2rem;">
+      <div class="section_header">
+        <h4>Bengali Poetry</h4>
+        <span class="view_all_books" (click)="AllBookList('Bengali Poetry')"><i class="fa fa-book"></i> View all books</span>
+      </div>
+      <div class="offset-md-1"></div>
+      <div class="col-md-2 col-sm-6" *ngFor="let ptthree of _productTempService.product_template_list_three">
+        <div class="product-grid2">
+          <div class="product-image2">
+            <span>
+              <img class="pic-1" [src]="ptthree.templateProductImage">
+              <img class="pic-2" [src]="ptthree.templateProductImage">
+            </span>
+            <ul class="social">
+              <li (click)="AddToCart(ptthree.templateProductCode)"><span data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></span></li>
+            </ul>
+            <span class="add-to-cart" (click)="ViewDetails(ptthree.templateProductCode)">View Details</span>
+          </div>
+          <div class="product-content">
+            <input type="hidden" class="form-control" id="product_code" [value]="ptthree.templateProductCode" />
+            <h4><span class="title"><b>{{ptthree.templateProductName}}</b></span></h4>
+            <span class="price"><b>Tk.{{ptthree.templateProductPrice}}</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fourth_container_section">
+    <div class="row" style="padding-top: 2rem;">
+      <div class="section_header">
+        <h4>Travel</h4>
+        <span class="view_all_books" (click)="AllBookList('Travel')"><i class="fa fa-book"></i> View all books</span>
+      </div>
+      <div class="offset-md-1"></div>
+      <div class="col-md-2 col-sm-6" *ngFor="let ptfour of _productTempService.product_template_list_four">
+        <div class="product-grid2">
+          <div class="product-image2">
+            <span>
+              <img class="pic-1" [src]="ptfour.templateProductImage">
+              <img class="pic-2" [src]="ptfour.templateProductImage">
+            </span>
+            <ul class="social">
+              <li (click)="AddToCart(ptfour.templateProductCode)"><span data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></span></li>
+            </ul>
+            <span class="add-to-cart" (click)="ViewDetails(ptfour.templateProductCode)">View Details</span>
+          </div>
+          <div class="product-content">
+            <input type="hidden" class="form-control" id="product_code" [value]="ptfour.templateProductCode" />
+            <h4><span class="title"><b>{{ptfour.templateProductName}}</b></span></h4>
+            <span class="price"><b>Tk.{{ptfour.templateProductPrice}}</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fifth_container_section">
+    <div class="row" style="padding-top: 2rem;">
+      <div class="section_header">
+        <h4>Science Fiction</h4>
+        <span class="view_all_books" (click)="AllBookList('Science Fiction')"><i class="fa fa-book"></i> View all books</span>
+      </div>
+      <div class="offset-md-1"></div>
+      <div class="col-md-2 col-sm-6" *ngFor="let ptfive of _productTempService.product_template_list_five">
+        <div class="product-grid2">
+          <div class="product-image2">
+            <span>
+              <img class="pic-1" [src]="ptfive.templateProductImage">
+              <img class="pic-2" [src]="ptfive.templateProductImage">
+            </span>
+            <ul class="social">
+              <li (click)="AddToCart(ptfive.templateProductCode)"><span data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></span></li>
+            </ul>
+            <span class="add-to-cart" (click)="ViewDetails(ptfive.templateProductCode)">View Details</span>
+          </div>
+          <div class="product-content">
+            <input type="hidden" class="form-control" id="product_code" [value]="ptfive.templateProductCode" />
+            <h4><span class="title"><b>{{ptfive.templateProductName}}</b></span></h4>
+            <span class="price"><b>Tk.{{ptfive.templateProductPrice}}</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="footer-distributed">
+
+  <div class="footer-left">
+
+    <h3>Online Book<span> Store</span></h3>
+
+    <p class="footer-links">
+      <a href="#">Home</a>
+      ·
+      <a href="#">Blog</a>
+      ·
+      <a href="#">Pricing</a>
+      ·
+      <a href="#">About</a>
+      ·
+      <a href="#">Faq</a>
+      ·
+      <a href="#">Contact</a>
+    </p>
+
+    <p class="footer-company-name">Online Book Store &copy; {{getCurrentYear}}</p>
+  </div>
+
+  <div class="footer-center">
+
+    <div>
+      <i class="fa fa-map-marker"></i>
+      <p><span>Dhaka</span> Bangladesh</p>
+    </div>
+
+    <div>
+      <i class="fa fa-phone"></i>
+      <p>+8801750000002</p>
+    </div>
+
+    <div>
+      <i class="fa fa-envelope"></i>
+      <p><a href="mailto:contact@bookstore.com">contact@bookstore.com</a></p>
+    </div>
+
+  </div>
+
+  <div class="footer-right">
+
+    <p class="footer-company-about">
+      <span>About the company</span>
+      Online book store is a ecommerce site. It is build aiming to provide and sell various books.
+    </p>
+
+    <div class="footer-icons">
+
+      <a href="#" class="social_fb"><i class="fa fa-facebook"></i></a>
+      <a href="#" class="social_twt"><i class="fa fa-twitter"></i></a>
+      <a href="#" class="social_lnkd"><i class="fa fa-linkedin"></i></a>
+      <a href="#" class="social_git"><i class="fa fa-instagram"></i></a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+  <button type="button" class="btn active" data-toggle="button" aria-pressed="true" (click)="scrollToTop()">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+</div>
+

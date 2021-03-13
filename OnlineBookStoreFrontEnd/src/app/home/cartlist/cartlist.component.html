@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-store">
+  <a class="navbar-brand navbar-logo" href="#">Online Book Store</a>
+
+  <!--<form class="form-inline my-2 my-lg-0 navbar-search">
+    <input class="form-control mr-sm-2 navbar-search-input" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>-->
+
+  <div class="navbar-logout">
+    <button class="btn btn-danger my-2 my-sm-0 navbar-logout-btn" (click)="onClickLogOutBtn()">{{LogInBtn}}</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm-8" style="padding: 30px 20px;">
+      <div class="card" style="border: none;margin-bottom: 30px;box-shadow: 0.5px 0.5px #ABB2B9;">
+        <div class="card-body">
+          <div class="col-xs-6">
+            <h4 style="float:left;">My Cart({{totalNumofItems}} item)</h4>
+          </div>
+          <div class="col-xs-6">
+            <h4 style="text-align: right;">Total: {{TotalPrice}}Tk.</h4>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="border: none;">
+        <div class="card-body" style="box-shadow: 0.5px 0.5px #ABB2B9;">
+          <table id="single_product_specification">
+            <tr>
+              <th></th>
+              <th>Book Title</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Delete</th>
+            </tr>
+            <tr *ngFor="let productList of cart_product_details_list">
+              <td><img [src]="productList.productImage" style="height: 80px; width: 50px;" /></td>
+              <td>{{productList.productTitle}}</td>
+              <td>Tk. {{productList.productPrice}}</td>
+              <td>{{productList.productQuantity}}</td>
+              <td><input type="button" value="Delete" class="btn btn-danger"/></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td colspan="3">Tk. {{TotalPrice}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4" style="padding: 30px 20px;">
+      <div class="card" style="border: none;">
+        <div class="card-body" style="box-shadow: 0.5px 0.5px #ABB2B9;">
+          <p style="box-shadow: 0px 0.8px #ABB2B9;padding-bottom: 8px;font-size: 18px;">Checkout Summary</p>
+          <div class="subtotal_section">
+            <p>Subtotal</p>
+            <p>{{TotalPrice}} Tk.</p>
+          </div>
+          <div class="shipping_section">
+            <p>Shipping</p>
+            <p>{{shippingPrice}} Tk.</p>
+          </div>
+          <div class="total_section">
+            <p>Total</p>
+            <p>{{payableTotal}} Tk.</p>
+          </div>
+          <div class="payable_total_section">
+            <p><b>Payable Total</b></p>
+            <p><b>{{payableTotal}} Tk.</b></p>
+          </div>
+          <div class="proceed_to_checkout_section">
+            <!--<input type="button" class="btn btn-lg proceed_to_checkout" value="Proceed To CheckOut" (click)="ProceedToCheckOut()" [disabled]="ProceedToChckOut">-->
+            <button class="btn btn-lg proceed_to_checkout" type="submit" [disabled]="ChckOutBtn !== '1'" (click)="ProceedToCheckOut()">Proceed To CheckOut</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

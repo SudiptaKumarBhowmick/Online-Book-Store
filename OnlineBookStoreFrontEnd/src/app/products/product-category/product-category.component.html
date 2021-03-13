@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-store">
+  <a class="navbar-brand navbar-logo" href="#">Online Book Store</a>
+
+  <div class="navbar-logout">
+    <button class="btn btn-danger my-2 my-sm-0 navbar-logout-btn" (click)="onClickLogOut()">{{LogInBtn}}</button>
+  </div>
+</nav>
+
+<div class="main-content">
+  <div class="row centered-form mt-4">
+    <div class="col-md-4 offset-md-4">
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h4 style="margin-left:16px;">Product category</h4>
+            <p>Product category information entry.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <form [formGroup]="productCategoryForm" autocomplete="off" class="form-horizontal" (ngSubmit)="this[EventValue]()">
+
+            <div class="form-group required">
+              <input type="hidden" formControlName="categoryId">
+            </div>
+
+            <div class="form-group required">
+              <label>Category Name: </label>
+              <input type="text" formControlName="categoryName" class="form-control input-sm" placeholder="Category Name">
+              <label class="text-danger" *ngIf="productCategoryForm.get('categoryName').touched && productCategoryForm.get('categoryName').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="form-group required">
+              <label>Category Description: </label>
+              <input type="text" formControlName="categoryDescription" class="form-control input-sm" placeholder="Category Description">
+              <label class="text-danger" *ngIf="productCategoryForm.get('categoryDescription').touched && productCategoryForm.get('categoryDescription').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group" style="margin-left:4px;">
+                <button type="submit" class="btn btn-info btn-block"><i class="fa fa-check-square-o"></i> {{EventValue}}</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-table">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="styled-table row-border hover col-xs-12" style="width:100%" *ngIf="data?.length>0">
+          <thead>
+            <tr>
+              <th style="display: none;">Id</th>
+              <th>Category Name</th>
+              <th>Category Description</th>
+              <th style="text-align:center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let d of data">
+              <td style="display: none;">{{d.productCategoryId}}</td>
+              <td>{{d.categoryName}}</td>
+              <td>{{d.categoryDescription}}</td>
+              <td style="text-align:center">
+                <a (click)="EditData(d)" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
+                <a (click)="deleteData(d.productCategoryId)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

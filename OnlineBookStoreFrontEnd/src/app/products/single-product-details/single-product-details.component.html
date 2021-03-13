@@ -1,0 +1,138 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-store">
+  <a class="navbar-brand navbar-logo" href="#">Online Book Store</a>
+
+  <!--<form class="form-inline my-2 my-lg-0 navbar-search">
+    <input class="form-control mr-sm-2 navbar-search-input" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>-->
+
+  <div class="navbar-logout">
+    <button class="btn btn-danger my-2 my-sm-0 navbar-logout-btn" (click)="onClickLogOut()">{{LogInBtn}}</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="add_to_cart_product" [routerLink]="['/cartlist']">
+    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+    <div class="add_to_cart_count">
+      <p>{{addToCartCount}}</p>
+    </div>
+  </div>
+
+  <div class="row" style="background-color: #ffffff;box-shadow: 0.5px 0.5px #ABB2B9; margin-top: 20px;">
+    <div class="col-sm-3" style="padding: 30px 20px;">
+      <div class="card">
+        <div class="card-body">
+          <!--<img src="/assets/image/s1.jpg" alt="" style="width: 200px; height: 250px;" />-->
+          <img [src]="ProductImageSource" *ngIf="ProductImageSource" style="width: 200px;height: 250px;">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6" style="padding: 30px 20px;">
+      <div class="card" style="border: none;">
+        <div class="card-body">
+          <h2>{{BookTitle}}</h2>
+          <h5>by <span style="color: #0026ff">{{ProductDetailsAuthorName}}</span></h5>
+          <h5>category <span style="color: #0026ff">{{CategoryName}}</span></h5>
+          <p><i class="fa fa-star review-icon"></i> {{Ratings}}</p>
+          <h3>Price. <span>Tk. {{ProductPrice}}</span></h3>
+          <h6>{{InStockAvailable}}</h6>
+          <input type="button" class="btn btn-info btn-lg" value="Add To Cart" (click)="AddToCart()"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3" style="padding: 30px 20px; background-color: #F6F6F6;">
+      <div class="card" style="border: none;">
+        <div class="card-body" style="background-color: #F6F6F6;">
+          <div class="social_tag">
+            <i class="fa fa-money" aria-hidden="true"></i>
+            <p>Cash on delivery</p>
+          </div>
+          <div class="social_tag">
+            <i class="fa fa-undo" aria-hidden="true"></i>
+            <p>7 days happy return</p>
+          </div>
+          <div class="social_tag">
+            <i class="fa fa-truck" aria-hidden="true"></i>
+            <p>Delivery charge Tk. 50(Online Order)</p>
+          </div>
+          <div class="social_tag">
+            <i class="fa fa-credit-card" aria-hidden="true"></i>
+            <p>Purchase & Earn</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="background-color: #ffffff;margin-top: 20px;margin-bottom: 20px;box-shadow: 0.5px 0.5px #ABB2B9;">
+    <div class="product_specification_summary">
+      <div class="product_summary_header" style="width: 100%;">
+        <h1>Product Specification & Summary</h1>
+      </div>
+
+      <div class="product_summary_tab">
+        <ul class="nav nav-tabs" id="single_product_tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">Summary</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="specification-tab" data-toggle="tab" href="#specification" role="tab" aria-controls="specification" aria-selected="false">Specification</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="author-tab" data-toggle="tab" href="#author" role="tab" aria-controls="author" aria-selected="false">Author</a>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="single_product_tab_content">
+          <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+            <p>{{ProductSummary}}</p>
+          </div>
+          <div class="tab-pane fade" id="specification" role="tabpanel" aria-labelledby="specification-tab">
+            <table id="single_product_specification" class="table_single_product" style="width: 1090px;">
+              <tr>
+                <td class="td_first">Title</td>
+                <td class="td_second">{{Title}}</td>
+              </tr>
+              <tr>
+                <td class="td_first">Author</td>
+                <td class="td_second">{{SpecificationSummaryAuthorName}}</td>
+              </tr>
+              <tr>
+                <td class="td_first">Publisher</td>
+                <td class="td_second">{{Publisher}}</td>
+              </tr>
+              <tr>
+                <td class="td_first">Edition</td>
+                <td class="td_second">{{Edition}}</td>
+              </tr>
+              <tr>
+                <td class="td_first">Number of pages</td>
+                <td class="td_second">{{NumOfPages}}</td>
+              </tr>
+              <tr>
+                <td class="td_first">Country</td>
+                <td class="td_second">{{Country}}</td>
+              </tr>
+              <tr>
+                <td class="td_first">Language</td>
+                <td class="td_second">{{Language}}</td>
+              </tr>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="author" role="tabpanel" aria-labelledby="author-tab">
+            <div class="row">
+              <div class="col-sm-3 author_image">
+                <img [src]="AuthorImage" alt="" />
+              </div>
+              <div class="col-sm-9">
+                <h1>{{SpecificationSummaryAuthorName}}</h1>
+                <p>{{AuthorDescription}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

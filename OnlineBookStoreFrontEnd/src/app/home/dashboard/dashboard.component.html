@@ -1,0 +1,103 @@
+<!--https://bootsnipp.com/tags/shop-->
+<!--https://bootsnipp.com/snippets/O5yMd-->
+
+<div class="container">
+  <div class="header_dashboard">
+    <h1>Online Book Store</h1>
+    <p>Book Collection</p>
+  </div>
+
+  <div class="add_to_cart_product" [routerLink]="['/cartlist']">
+    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+      <div class="add_to_cart_count">
+        <p>{{addToCartCount}}</p>
+      </div>
+  </div>
+
+  <section id="first_container_section">
+    <div class="row" style="padding-top: 2rem;">
+      <div class="section_header">
+        <h4>Bengali Novels</h4>
+      </div>
+      <div class="offset-md-1"></div>
+      <div class="col-md-2 col-sm-6" *ngFor="let ptone of _productTempService.product_template_list_one">
+        <div class="product-grid2">
+          <div class="product-image2">
+            <span>
+              <img class="pic-1" [src]="ptone.templateProductImage">
+              <img class="pic-2" [src]="ptone.templateProductImage">
+            </span>
+            <ul class="social">
+              <li (click)="AddToCart(ptone.templateProductCode)"><span data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></span></li>
+            </ul>
+            <span class="add-to-cart" (click)="ViewDetails(ptone.templateProductCode)">View Details</span>
+          </div>
+          <div class="product-content">
+            <!--<h3 class="title"><input type="text" [ngValue]="pt.ProductName" /></h3>-->
+            <input type="hidden" class="form-control" id="product_code" [value]="ptone.templateProductCode" />
+            <h4><span class="title"><b>{{ptone.templateProductName}}</b></span></h4>
+            <span class="price"><b>Tk.{{ptone.templateProductPrice}}</b></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="second_container_section">
+    <div class="row" style="padding-top: 2rem;">
+      <div class="section_header">
+        <h4>English Literature</h4>
+      </div>
+      <div class="offset-md-1"></div>
+      <div class="col-md-2 col-sm-6" *ngFor="let pttwo of _productTempService.product_template_list_two">
+        <div class="product-grid2">
+          <div class="product-image2">
+            <span>
+              <img class="pic-1" [src]="pttwo.templateProductImage">
+              <img class="pic-2" [src]="pttwo.templateProductImage">
+            </span>
+            <ul class="social">
+              <li (click)="AddToCart(pttwo.templateProductCode)"><span data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></span></li>
+            </ul>
+            <span class="add-to-cart" (click)="ViewDetails(ptone.templateProductCode)">View Details</span>
+          </div>
+          <div class="product-content">
+            <input type="hidden" class="form-control" id="product_code" [value]="pttwo.templateProductCode" />
+            <h4><span class="title"><b>{{pttwo.templateProductName}}</b></span></h4>
+            <span class="price"><b>Tk.{{pttwo.templateProductPrice}}</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="third_container_section">
+    <div class="row" style="padding-top: 2rem;">
+      <div class="section_header">
+        <h4>Bengali Poetry</h4>
+      </div>
+      <div class="offset-md-1"></div>
+      <div class="col-md-2 col-sm-6" *ngFor="let ptthree of _productTempService.product_template_list_three">
+        <div class="product-grid2">
+          <div class="product-image2">
+            <span>
+              <img class="pic-1" [src]="ptthree.templateProductImage">
+              <img class="pic-2" [src]="ptthree.templateProductImage">
+            </span>
+            <ul class="social">
+              <li (click)="AddToCart(ptthree.templateProductCode)"><span data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></span></li>
+            </ul>
+            <span class="add-to-cart" (click)="ViewDetails(ptone.templateProductCode)">View Details</span>
+          </div>
+          <div class="product-content">
+            <input type="hidden" class="form-control" id="product_code" [value]="ptthree.templateProductCode" />
+            <h4><span class="title"><b>{{ptthree.templateProductName}}</b></span></h4>
+            <span class="price"><b>Tk.{{ptthree.templateProductPrice}}</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

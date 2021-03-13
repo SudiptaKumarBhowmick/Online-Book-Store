@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-store">
+  <!-- Sidebar -->
+  <div class="w3-sidebar w3-bar-block w3-border-right" [ngClass]="statusClass" id="mySidebar">
+    <button (click)="leftbar_close()" class="w3-bar-item w3-large">Close &times;</button>
+    <a href="#" class="w3-bar-item w3-button">Link 1</a>
+    <a href="#" class="w3-bar-item w3-button">Link 2</a>
+    <a href="#" class="w3-bar-item w3-button">Link 3</a>
+  </div>
+
+  <!-- Page Content -->
+  <div class="w3-teal navbar-scroll-btn">
+    <button class="w3-button w3-teal w3-xlarge" (click)="leftbar_open()">☰</button>
+  </div>
+
+  <a class="navbar-brand navbar-logo" href="#">Online Book Store</a>
+
+  <!--<form class="form-inline my-2 my-lg-0 navbar-search">
+    <input class="form-control mr-sm-2 navbar-search-input" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>-->
+
+  <div class="navbar-logout">
+    <button class="btn btn-danger my-2 my-sm-0 navbar-logout-btn" (click)="onClickLogOut()">{{LogInBtn}}</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="add_to_cart_product" [routerLink]="['/cartlist']">
+    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+    <div class="add_to_cart_count">
+      <p>{{addToCartCount}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="offset-sm-9 col-sm-3 mt-4">
+      <input type="text" class="form-control" placeholder="search..." [(ngModel)]="filterTerm" />
+    </div>
+  </div>
+
+  <div class="row" *ngFor="let allbooklist of _productService.all_book_list | filter:filterTerm | paginate: {itemsPerPage: 10, currentPage: p}" style="background-color: #ffffff;box-shadow: 0.5px 0.5px #ABB2B9; margin-top: 30px; margin-bottom: 30px;">
+    <input type="hidden" class="form-control" id="product_code" [value]="allbooklist.productCode" />
+    <div class="col-sm-2" style="padding-left: 10px; padding-right: 10px;">
+      <div class="card" style="border: none; height: 250px;">
+        <div class="card-body">
+          <img [src]="allbooklist.productImage" style="width: 150px;height: 210px;" (click)="ViewDetails(allbooklist.productCode)">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-8" style="padding-left: 10px; padding-right: 10px;">
+      <div class="card" style="border: none; height: 250px;">
+        <div class="card-body">
+          <p class="product-title" (click)="ViewDetails(allbooklist.productCode)">{{allbooklist.productName}}</p>
+          <h6 class="author-name">by <span>{{allbooklist.authorName}}</span></h6>
+          <p class="product-description">{{allbooklist.productDescription | slice:0:200}}...</p>
+          <p class="product-price">Tk. {{allbooklist.productPrice}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-2" style="padding-left: 10px; padding-right: 10px;">
+      <div class="card" style="border: none; height: 250px;">
+        <div class="card-body">
+          <span class="add-to-favorite" (click)="AddToFavorite(allbooklist.productCode)"><i class="fa fa-heart-o"></i></span>
+          <span class="add-to-cart" (click)="AddToCart(allbooklist.productCode)"><i class="fa fa-cart-plus"></i></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="offset-sm-8 col-sm-4 mt-2">
+      <div class="card">
+        <div class="card-footer pb-0 pt-3">
+          <pagination-controls (pageChange)="p =$event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

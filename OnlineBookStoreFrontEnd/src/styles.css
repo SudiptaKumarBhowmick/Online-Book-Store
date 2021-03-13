@@ -1,0 +1,293 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'assets/css/style.css';
+@import 'assets/css/SidebarStyle.css';
+@import 'assets/css/w3.css';
+@import '~ngx-toastr/toastr.css';
+
+body {
+  background-color: #F8F8F8;
+}
+
+.nav-open {
+  display: block;
+  top: 0px;
+  left: 0px;
+}
+
+.nav-close {
+  display: none;
+}
+
+.navbar-scroll-btn {
+  margin-right: 15px;
+}
+
+  .navbar-scroll-btn button:hover {
+    color: #fff !important;
+    background-color: #00877b !important;
+  }
+
+.navbar-scroll-btn button{
+    padding: 5px 13px;
+}
+
+.SignUp_form_parent, .LogIn_form_parent {
+  background-color: #ffffff;
+  border-color: #A6ACAF;
+  border-style: solid;
+  border-width: 0.1px;
+}
+
+.SignUp_form_header, .LogIn_form_header {
+  margin-top: 10px;
+}
+
+.redirect_to_signin {
+  cursor: pointer;
+}
+
+input.form-control, input.form-control:focus {
+  /*background-color: #ffc107;*/
+  color: black;
+  border-color: #909497;
+  border-radius: 2px;
+  border-width: 1px;
+  height: 35px;
+}
+
+  input.form-control:focus {
+    box-shadow: none;
+    border-bottom-color: #909497;
+    height: 35px;
+  }
+
+.btn-login, .btn-signup {
+  border-radius: 20px;
+  background-color: #000;
+  color: #fff;
+  padding: 3px 15px 3px 15px;
+}
+
+  .btn-login:hover, .btn-signup:hover {
+    border-radius: 20px;
+    background-color: #2A2D31;
+    color: #fff;
+    padding: 3px 15px 3px 15px;
+  }
+
+div.form-group label {
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+div.form-group.required > label:first-child:after {
+  content: '*';
+  color: #dc3545;
+  padding-left: 5px;
+}
+
+#toast-container > div {
+  opacity: 1;
+}
+
+form {
+  margin: 0px 16px;
+}
+
+div.side-header {
+  border: 3px solid black;
+}
+
+
+/*login styles*/
+.login input[type="text"],
+.login input[type="password"] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+}
+
+
+  .login input[type="text"]:focus,
+  .login input[type="password"]:focus {
+    border-color: #888;
+  }
+
+
+.login input[type="submit"] {
+  background: rgb(1, 29, 51);
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+  .login input[type="submit"]:hover {
+    background: #17c;
+  }
+
+
+  .login input[type="submit"]:focus {
+    border-color: #05a;
+  }
+
+.has-error input[type="text"],
+.has-error input[type="password"] {
+  border-color: rgb(216, 12, 12);
+  color: rgb(230, 14, 14);
+}
+
+.class_input {
+  margin-bottom: 0px;
+}
+
+.class_error {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+div.panel-title h3 {
+  margin-left: 16px;
+}
+
+div.panel-title p {
+  margin-left: 18px;
+}
+
+#Country {
+  width: 240px;
+  height: 35px;
+}
+
+#ProductCategory {
+  width: 240px;
+  height: 35px;
+}
+
+#author {
+}
+
+#teacher {
+  margin-left: 10px;
+}
+
+#student {
+  margin-left: 10px;
+}
+
+.subtotal_section, .shipping_section, .total_section {
+  box-shadow: 0px 0.8px #ABB2B9;
+}
+
+.payable_total_section {
+  box-shadow: 0px 1px #ABB2B9;
+}
+
+.subtotal_section p:first-child {
+  float: left;
+}
+
+.shipping_section p:first-child {
+  float: left;
+}
+
+.total_section p:first-child {
+  float: left;
+}
+
+.payable_total_section p:first-child {
+  float: left;
+}
+
+.subtotal_section p:last-child {
+  text-align: right;
+}
+
+.shipping_section p:last-child {
+  text-align: right;
+}
+
+.total_section p:last-child {
+  text-align: right;
+}
+
+.payable_total_section p:last-child {
+  text-align: right;
+}
+
+.proceed_to_checkout_section {
+  text-align: center;
+}
+
+.proceed_to_checkout {
+  background-color: #FF9900;
+  color: #ffffff;
+  border: 0.8px solid #FF9900;
+}
+
+  .proceed_to_checkout:hover {
+    background-color: #F8C471;
+    color: #ffffff;
+    border: 0.8px solid #F8C471;
+  }
+
+  .proceed_to_checkout:active {
+    background-color: #F8C471;
+    color: #ffffff;
+    border: 0.8px solid #F8C471;
+  }
+
+  .proceed_to_checkout:focus {
+    background-color: #F8C471;
+    color: #ffffff;
+    box-shadow: 0 0 0 0.2rem #F8C471;
+  }
+
+/*single product details*/
+.table_single_product table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.table_single_product th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+.td_first {
+  background-color: #D5D8DC;
+  width: 20%;
+}
+
+.td_second {
+  background-color: #FFFFFF;
+  width: 80%;
+}
+
+#single_product_specification {
+  width: 100%;
+}
+
+  #single_product_specification th:first-child {
+    /*background-color: #FFE484;*/
+  }
+
+#summary {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#specification {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#author {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.product_specification_summary {
+  padding: 30px 20px;
+}

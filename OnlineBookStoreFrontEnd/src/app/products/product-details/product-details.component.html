@@ -1,0 +1,119 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-store">
+  <a class="navbar-brand navbar-logo" href="#">Online Book Store</a>
+
+  <!--<form class="form-inline my-2 my-lg-0 navbar-search">
+    <input class="form-control mr-sm-2 navbar-search-input" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>-->
+
+  <div class="navbar-logout">
+    <button class="btn btn-danger my-2 my-sm-0 navbar-logout-btn" (click)="onClickLogOut()">{{LogInBtn}}</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row centered-form mt-4">
+    <div class="col-md-6 offset-md-3">
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h3>Product Detail Information Entry</h3>
+            <p>Please enter product information.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <form [formGroup]="formProductModel" #ProductDetailsEntryForm="ngForm" autocomplete="off" class="form-horizontal" (ngSubmit)="this[EventValue]()">
+            <div class="form-group">
+              <input type="hidden" formControlName="ProductId">
+            </div>
+
+            <div class="form-group required">
+              <label>Product Name: </label>
+              <input type="text" formControlName="ProductName" class="form-control input-sm" placeholder="Product Name">
+              <label class="text-danger" *ngIf="formProductModel.get('ProductName').touched && formProductModel.get('ProductName').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="form-group required">
+              <label>Product Price: </label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1" style="height: 35px;">Tk.</span>
+                </div>
+                <input type="text" formControlName="ProductPrice" class="form-control input-sm" placeholder="500">
+              </div>
+              <label class="text-danger" *ngIf="formProductModel.get('ProductPrice').touched && formProductModel.get('ProductPrice').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="form-group required">
+              <label style="margin-right: 20px;">Product Image: </label>
+              <label for="product_image">
+                <!--<img id="product_image_source" formControlName="ProductImageSource" style="width: 210px;height:126px;border: 1px solid #ddd;padding:3px;cursor:pointer;">-->
+                <!--<i class="fa fa-plus" id="upload_icon" style="position: relative; top: 0px;left: -120px;"></i>-->
+                <input type="file" #ProductImage id="ProductImage" (change)="readImageFile($event)">
+              </label>
+              <img [src]="ProductImageSrc" *ngIf="ProductImageSrc" style="width: 210px; height: 126px;">
+
+              <input type="hidden" formControlName="ProductImageValue" class="form-control">
+              <label class="text-danger" *ngIf="formProductModel.get('ProductImageValue').touched && formProductModel.get('ProductImageValue').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="form-group required">
+              <label style="width: 100%;">Product Category: </label>
+              <select formControlName="ProductCategory" id="ProductCategory" class="form-control">
+                <option value="" selected>Select Category</option>
+                <option [ngValue]="pc.productCategroyId" *ngFor="let pc of _service.product_category_list">
+                  {{pc.categoryName}}
+                </option>
+              </select>
+              <label class="text-danger" *ngIf="formProductModel.get('ProductCategory').touched && formProductModel.get('ProductCategory').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <button type="submit" class="btn btn-info btn-block"><i class="fa fa-check-square-o"></i> {{EventValue}}</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-table">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="styled-table row-border hover col-xs-12" style="width:100%" *ngIf="productDetailsList?.length>0">
+        <thead>
+          <tr>
+            <th style="display: none;"></th>
+            <th>Product Name</th>
+            <th>ProductPrice</th>
+            <th>Product Image</th>
+            <th style="display: none;"></th>
+            <th>Category</th>
+            <th style="text-align:center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of productDetailsList">
+            <td style="display: none;">{{p.productId}}</td>
+            <td>{{p.productName}}</td>
+            <td>{{p.productPrice}}</td>
+            <td><img src="{{p.productImage}}" style="width: 80px; height: 80px;"></td>
+            <td style="display: none;">{{p.categoryId}}</td>
+            <td>{{p.productCategory}}</td>
+            <td style="text-align:center">
+              <a (click)="EditData(p)" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
+              <a (click)="deleteData(p.productId)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

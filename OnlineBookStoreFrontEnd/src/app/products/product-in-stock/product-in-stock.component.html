@@ -1,0 +1,106 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-store">
+  <a class="navbar-brand navbar-logo" href="#">Online Book Store</a>
+
+  <div class="navbar-logout">
+    <button class="btn btn-danger my-2 my-sm-0 navbar-logout-btn" (click)="onClickLogOut()">{{LogInBtn}}</button>
+  </div>
+</nav>
+
+<div class="main-content">
+  <div class="row centered-form mt-4">
+    <div class="col-md-4 offset-md-4">
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h4 style="margin-left:16px;">Product In Stock</h4>
+            <p>Product in stock information entry.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <form [formGroup]="productInStockForm" autocomplete="off" class="form-horizontal" (ngSubmit)="this[EventValue]()">
+
+            <div class="form-group">
+              <input type="hidden" formControlName="ProductStockId">
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label style="width: 100%;">Product Name: </label>
+                  <select formControlName="ProductNameId" id="ProductNameId" class="form-control">
+                    <option value="" selected>Select Product</option>
+                    <option [ngValue]="p.productId" *ngFor="let p of _productService.product_list">
+                      {{p.productName}}
+                    </option>
+                  </select>
+                  <label class="text-danger" *ngIf="productInStockForm.get('ProductNameId').touched && productInStockForm.get('ProductNameId').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>Product In Stock: </label>
+                  <select formControlName="ProductInStock" id="ProductInStock" class="form-control">
+                    <option value="" selected>Product Stock</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                  <label class="text-danger" *ngIf="productInStockForm.get('ProductInStock').touched && productInStockForm.get('ProductInStock').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group required">
+              <label>Quantity: </label>
+              <input type="text" formControlName="ProductQuantity" class="form-control input-sm" placeholder="Product Quantity">
+              <label class="text-danger" *ngIf="productInStockForm.get('ProductQuantity').touched && productInStockForm.get('ProductQuantity').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group" style="margin-left:4px;">
+                <button type="submit" class="btn btn-info btn-block"><i class="fa fa-check-square-o"></i> {{EventValue}}</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row row-table">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="styled-table row-border hover col-xs-12" style="width:100%" *ngIf="productInStockList?.length>0">
+          <thead>
+            <tr>
+              <th style="display: none;"></th>
+              <th style="display: none;"></th>
+              <th>Product Name</th>
+              <th>Product In Stock</th>
+              <th>Product Quanity</th>
+              <th style="text-align:center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of productInStockList">
+              <td style="display: none;">{{p.productStockId}}</td>
+              <td style="display: none;">{{p.productNameId}}</td>
+              <td>{{p.productName}}</td>
+              <td>{{p.productInStock}}</td>
+              <td>{{p.productQuantity}}</td>
+              <td style="text-align:center">
+                <a (click)="EditData(p)" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
+                <a (click)="deleteData(p.productStockId)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

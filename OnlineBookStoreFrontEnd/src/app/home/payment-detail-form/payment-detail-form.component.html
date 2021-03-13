@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="row centered-form mt-4">
+    <div class="col-md-6 offset-md-3">
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h3>Payment Detail Information</h3>
+            <p>Please enter your information.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <form [formGroup]="formPaymentDetailModel" #PaymentDetailsForm="ngForm" autocomplete="off" class="form-horizontal" (ngSubmit)="SavePaymentDetails(PaymentDetailsForm)">
+            <div class="form-group required">
+              <label>FullName: </label>
+              <input type="text" formControlName="FullName" class="form-control input-sm" placeholder="katheryn winnick">
+              <input type="hidden" formControlName="Name" class="form-control input-sm" value="">
+              <label class="text-danger" *ngIf="formPaymentDetailModel.get('FullName').touched && formPaymentDetailModel.get('FullName').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>PhoneNumber: </label>
+                  <input type="text" formControlName="PhoneNumber" class="form-control input-sm" placeholder="Phone Number">
+                  <label class="text-danger" *ngIf="formPaymentDetailModel.get('PhoneNumber').touched && formPaymentDetailModel.get('PhoneNumber').errors?.required">This field is mandatory.</label>
+                  <label class="text-danger" *ngIf="formPaymentDetailModel.get('PhoneNumber').touched && formPaymentDetailModel.get('PhoneNumber').errors?.minlength">Enter 11 digit phone number.</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group required">
+              <label>Card Number: </label>
+              <input type="text" formControlName="CardNumber" class="form-control input-sm" placeholder="Card Number" maxlength="20">
+              <label class="text-danger" *ngIf="formPaymentDetailModel.get('CardNumber').touched && formPaymentDetailModel.get('CardNumber').errors?.required">This field is mandatory.</label>
+              <label class="text-danger" *ngIf="formPaymentDetailModel.get('CardNumber').touched && formPaymentDetailModel.get('CardNumber').errors?.minlength">Card number is not valid.</label>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>Month: </label>
+                  <select formControlName="Month" id="Month" class="form-control">
+                    <option value="" selected>MM</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                  <label class="text-danger" *ngIf="formPaymentDetailModel.get('Month').touched && formPaymentDetailModel.get('Month').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>Year: </label>
+                  <select formControlName="Year" id="Year" class="form-control">
+                    <option value="" selected>YYYY</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                  </select>
+                  <label class="text-danger" *ngIf="formPaymentDetailModel.get('Year').touched && formPaymentDetailModel.get('Year').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group required">
+              <label>Address Line One: </label>
+              <input type="text" formControlName="AddressLineOne" class="form-control input-sm" placeholder="Address Line One">
+              <label class="text-danger" *ngIf="formPaymentDetailModel.get('AddressLineOne').touched && formPaymentDetailModel.get('AddressLineOne').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="form-group required">
+              <label>Address Line Two: </label>
+              <input type="text" formControlName="AddressLineTwo" class="form-control input-sm" placeholder="Address Line Two">
+              <label class="text-danger" *ngIf="formPaymentDetailModel.get('AddressLineTwo').touched && formPaymentDetailModel.get('AddressLineTwo').errors?.required">This field is mandatory.</label>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>City: </label>
+                  <input type="text" formControlName="City" class="form-control input-sm" placeholder="City">
+                  <label class="text-danger" *ngIf="formPaymentDetailModel.get('City').touched && formPaymentDetailModel.get('City').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>State: </label>
+                  <input type="text" formControlName="State" class="form-control input-sm" placeholder="State">
+                  <label class="text-danger" *ngIf="formPaymentDetailModel.get('State').touched && formPaymentDetailModel.get('State').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>Country: </label>
+                  <select formControlName="Country" id="Country" class="form-control">
+                    <option value="" selected>Select Country</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="India">India</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="China">China</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Taiwan">Taiwan</option>
+                  </select>
+                  <label class="text-danger" *ngIf="formPaymentDetailModel.get('Country').touched && formPaymentDetailModel.get('Country').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group required">
+                  <label>Zip: </label>
+                  <input type="text" formControlName="Zip" class="form-control input-sm" placeholder="Zip">
+                  <label class="text-danger" *ngIf="formPaymentDetailModel.get('Zip').touched && formPaymentDetailModel.get('Zip').errors?.required">This field is mandatory.</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-info btn-block">
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

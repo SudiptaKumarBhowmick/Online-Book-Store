@@ -1,0 +1,64 @@
+<div class="row mt-4">
+  <!--<div class="col-md-6">
+    <div class="row" style="height: 450px;">
+      <div class="col-md-12 my-auto side-header">
+        <img src="/assets/image/add_user.png" class="mx-auto d-block" />
+        <h1>User Registration</h1>
+
+      </div>
+    </div>
+  </div>-->
+  <div class="col-md-6 offset-md-3 SignUp_form_parent">
+      <form [formGroup]="_service.formModel" autocomplete="off" (submit)="onSubmit()" class="SignUp_form">
+        <div class="form-group SignUp_form_header">
+          <h3>Create Account</h3>
+        </div>
+        <div class="form-group required">
+          <label>Full Name:</label>
+          <input class="form-control" formControlName="FullName" />
+          <label class="text-danger" *ngIf="_service.formModel.get('FullName').touched && _service.formModel.get('FullName').errors?.required">This field is mandatory.</label>
+        </div>
+        <div class="form-group required">
+          <label>UserName:</label>
+          <input class="form-control" formControlName="UserName" />
+          <label class="text-danger" *ngIf="_service.formModel.get('UserName').touched && _service.formModel.get('UserName').errors?.required">This field is mandatory.</label>
+        </div>
+        <div class="form-group required">
+          <label>Email:</label>
+          <input class="form-control" formControlName="Email" />
+          <label class="text-danger" *ngIf="_service.formModel.get('Email').touched && _service.formModel.get('Email').errors?.required">This field is mandatory.</label>
+          <label class="text-danger" *ngIf="_service.formModel.get('Email').touched && _service.formModel.get('Email').errors?.email">Email is invalid.</label>
+        </div>
+        <div class="form-group required">
+          <label>Phone Number:</label>
+          <input class="form-control" formControlName="PhoneNumber" maxlength="11" />
+          <label class="text-danger" *ngIf="_service.formModel.get('PhoneNumber').touched && _service.formModel.get('PhoneNumber').errors?.required">This field is mandatory.</label>
+          <label class="text-danger" *ngIf="_service.formModel.get('PhoneNumber').touched && _service.formModel.get('PhoneNumber').errors?.minlength">Enter 11 digit phone number.</label>
+        </div>
+        <div formGroupName="Passwords">
+          <div class="form-group required">
+            <label>Password:</label>
+            <input type="password" class="form-control" formControlName="Password" />
+            <label class="text-danger" *ngIf="_service.formModel.get('Passwords.Password').touched && _service.formModel.get('Passwords.Password').errors?.required">This field is mandatory.</label>
+            <label class="text-danger" *ngIf="_service.formModel.get('Passwords.Password').touched && _service.formModel.get('Passwords.Password').errors?.minlength">Password must be 6 character.</label>
+          </div>
+          <div class="form-group required">
+            <label>Confirm Password:</label>
+            <input type="password" class="form-control" formControlName="ConfirmPassword" />
+            <label class="text-danger" *ngIf="_service.formModel.get('Passwords.ConfirmPassword').touched && _service.formModel.get('Passwords.ConfirmPassword').errors?.required">This field is mandatory.</label>
+            <label class="text-danger" *ngIf="_service.formModel.get('Passwords.ConfirmPassword').touched && _service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm password does not match.</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <button type="submit" class="btn btn-lg btn-block btn-signup">Create your account</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <span>Already have an account? <a href="" class="redirect_to_signin" [routerLink]="['/user/login']">Sign In</a></span>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
